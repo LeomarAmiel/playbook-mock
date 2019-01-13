@@ -1,10 +1,13 @@
 import React from 'react';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+} from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
 import DiscoverScreen from '../screens/DiscoverScreen';
 import PartnerScreen from '../screens/PartnerScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const DiscoverStack = createStackNavigator({
   Discover: DiscoverScreen,
@@ -13,10 +16,7 @@ const DiscoverStack = createStackNavigator({
 DiscoverStack.navigationOptions = {
   tabBarLabel: 'Discover',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name="md-search"
-    />
+    <TabBarIcon focused={focused} name="md-search" />
   ),
 };
 
@@ -26,30 +26,31 @@ const PartnerStack = createStackNavigator({
 
 PartnerStack.navigationOptions = {
   tabBarLabel: 'Your Partner',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name='md-happy'
-    />
-  ),
+  tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-happy" />,
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
+const ProfileStack = createStackNavigator(
+  {
+    Profile: ProfileScreen,
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        borderBottomColor: 'white',
+      },
+    },
+  },
+);
 
-SettingsStack.navigationOptions = {
+ProfileStack.navigationOptions = {
   tabBarLabel: 'Profile',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name="md-person"
-    />
+    <TabBarIcon focused={focused} name="md-person" />
   ),
 };
 
 export default createBottomTabNavigator({
   DiscoverStack,
   PartnerStack,
-  SettingsStack,
+  ProfileStack,
 });
